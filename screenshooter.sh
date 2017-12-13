@@ -4,7 +4,7 @@
 #
 # Author: Devin M. Alexander 2017
 # 
-# Parameters: ./screenshooter.sh (# of screenshots) (Width) (Height) (x) (y) (destination)
+# Parameters: ./screenshooter.sh (# of screenshots) (Width) (Height) (x) (y) (destination) (start frequency) (end frequency)
 #
 # # of screenshots: The desired number of screenshots to be snapped.
 # Width: The desired width of the final output.
@@ -12,17 +12,26 @@
 # x: The x coordinate of the original image from which to begin cropping.
 # y: The y coordinate of the original image from which to begin cropping.
 # destination: The final destination for the cropped image.
+# start frequency: the initial frequency that the application will center on
+# end frequency: the center frequency where images will cease to be taken
 #
+# 
 # This automates the capturing of WBT screenshots to be classified by 
-# TensorFlow. The first loop captures screenshots as .png files. The 
-# filename  is the date in seconds format.
-# You must have ImageMagick installed for this to work. 
+# TensorFlow. 
 #
-# The files are then converted to .jpg files, and the .png files are removed.
+# ****** You must have ImageMagick installed for this to work. ****** 
 #
-# The images are then cropped to the specified size. You must have ImageMagick
-# installed.
-#
+# 
+# This tool captures images from the WBT. In order for his to work correctly, 
+# VNCViewer must position the X11 window in the upper left-most position,
+# coordinate 0,0. This will enable the mousedotool to click in the correct
+# position. 
+# 
+# The tool begins by centering the image at the (start frequency). It then snaps
+# the (# of screenshots) and save them to the (destination). It will then shift
+# the center frequency two units to the left, at which point it will continue
+# the above procedure. When the (end frequency) is reached, the program will
+# terminate. 
 #
 # 
 
